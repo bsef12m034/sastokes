@@ -1,0 +1,555 @@
+﻿
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Application Wizard Bootstrap v3.x</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/bootstrap-wizard.css" rel="stylesheet" />
+    <link href="~/css/chosen.css" rel="stylesheet" />
+    <style type="text/css">
+        .wizard-modal p {
+            margin: 0 0 10px;
+            padding: 0;
+        }
+
+        #wizard-ns-detail-servers, .wizard-additional-servers {
+            font-size: 12px;
+            margin-top: 10px;
+            margin-left: 15px;
+        }
+
+            #wizard-ns-detail-servers > li, .wizard-additional-servers li {
+                line-height: 20px;
+                list-style-type: none;
+            }
+
+                #wizard-ns-detail-servers > li > img {
+                    padding-right: 5px;
+                }
+
+        .wizard-modal .chzn-container .chzn-results {
+            max-height: 150px;
+        }
+
+        .wizard-addl-subsection {
+            margin-bottom: 40px;
+        }
+
+        .create-server-agent-key {
+            margin-left: 15px;
+            width: 90%;
+        }
+    </style>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv-3.7.0.js"></script>
+    <script src="js/respond-1.3.0.min.js"></script>
+    <![endif]-->
+</head>
+
+<body style="padding:30px;">
+    
+    <button id="open-wizard" class="btn btn-primary">
+        Open wizard
+    </button>
+    @*"/Home/saveData"*@
+    <form method="post" action="/Home/saveData" id="moiz">
+        <div class="wizard" id="satellite-wizard" data-title="Personal Information">
+            <!-- Step 1 Name & FQDN -->
+            <div class="wizard-card" data-cardname="name">
+                <h3>Name & Email</h3>
+                <div class="wizard-input-section">
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="username" name="username" placeholder="Username">
+                        </div>
+                    </div>
+                </div>
+                <div class="wizard-input-section">
+                    <p>
+                        First Name
+                    </p>
+                    <div class="form-group">
+                        <div class="col-sm-8">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="Fname" name="Fname" placeholder="First Name" />
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="wizard-input-section">
+                    <p>
+                        Last Name
+                    </p>
+                    <div class="form-group">
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="Lname" name="Lname" placeholder="Last Name" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wizard-input-section">
+                    <p>
+                       Email
+                    </p>
+                    <div class="form-group">
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="email" name="email" placeholder="Email" />
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="wizard-card" data-cardname="group">
+                <h3>Address Information</h3>
+                <div class="wizard-input-section">
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="address" name="address" placeholder="Address">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wizard-input-section">
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="city" name="city" placeholder="City">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wizard-input-section">
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="state" name="state" placeholder="State">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wizard-input-section">
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <input type="tel" class="form-control" id="postal" name="postal" placeholder="Postal Code">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wizard-input-section">
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <input type="tel" class="form-control" id="cell" name="cell" placeholder="Mobile Number">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="wizard-card wizard-card-overlay">
+                <h3>Date & Time</h3>
+                <div class="alert hide">
+                    These are the dates which are available. When u select the date, the available times of that date will appear the.
+                </div>
+                <div class="wizard-input-section">
+                    <p>
+                        Please choose the services you'd like Panopta to
+                        monitor.  Any service you select will be given a default
+                        check frequency of 1 minute.
+                    </p>
+
+                    <input type='text' id='txtDate' name="txtDate" />
+                    <script>
+                     
+                    </script>
+
+
+                    <label>Time</label>
+                    <select name="txtTime" id="timeId">
+
+                        <option value=""></option>
+                        <optgroup label="Times for this date">
+
+
+                            
+                                
+
+                            
+
+
+
+                        </optgroup>
+
+
+                    </select>
+                </div>
+
+
+            </div>
+            <div class="wizard-card wizard-card-overlay">
+                <h3>Event Information</h3>
+                <div class="wizard-input-section">
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="event" name="event" placeholder="Event type"><br />
+                            <input type="number" class="form-control" id="guest" name="guest" placeholder="No of guest"><br />
+                            <input type="number" class="form-control" id="hours" name="hours" placeholder="Hours Needed">
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="wizard-card wizard-card-overlay">
+                <h3>Terms of Conditions</h3>
+                <div class="wizard-input-section">
+                    <p>
+                        <input type="checkbox" name="vehicle" value="Bike">I agree to these terms of conditions<br>
+                    </p>
+                    <textarea rows="4" cols="50" style="background-color:lightgray">
+                        At w3schools.com you will learn how to make a website. We offer free tutorials in all web development technologies.
+                    </textarea>
+                </div>
+
+            </div>
+
+            <div class="wizard-card">
+                <h3>Payment Method</h3>
+                <div class="wizard-input-section">
+                    <p>
+                        You can write all about the payment method here....
+                    </p>
+                    <label>Payment Method &nbsp </label>
+                    <select name="payment" id="payment">
+
+                        <option value=""></option>
+                        <optgroup label="Methods">
+
+
+                            <option selected value="icmp.ping">Paypal</option>
+                            <option selected value="icmp.ping">Western Union</option>
+                            <option selected value="icmp.ping">Alert Pay</option>
+                            <option selected value="icmp.ping">Money Gram</option>
+
+
+
+
+                        </optgroup>
+
+
+                    </select>
+
+
+                </div>
+
+                <input type="submit" class="btn btn-success" value="submit" name="submit" onclick="khu()" />
+
+            </div>
+
+        </div>
+    </form>
+
+    <script src="~/js/jquery-2.0.3.min.js" type="text/javascript"></script>
+    <script src="~/js/chosen.jquery.js"></script>
+    <script src="~/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="~/js/prettify.js" type="text/javascript"></script>
+    <script src="~/js/bootstrap-wizard.js" type="text/javascript"></script>
+
+    
+
+
+    <script type="text/javascript">
+       
+        function khu()
+        {
+            var fname = document.getElementById("Fname").value;
+            var lname = document.getElementById("Lname").value;
+            var email = document.getElementById("email").value;
+            var address = document.getElementById("address").value;
+            var city = document.getElementById("city").value;
+            var state = document.getElementById("state").value;
+            var zip = document.getElementById("postal").value;
+            var phone = document.getElementById("cell").value;
+            var date = document.getElementById("txtDate").value;
+            var time = $('#timeId option:selected').text();//document.getElementById("timeId").value;
+            var event = document.getElementById("event").value;
+            var guest = document.getElementById("guest").value;
+            var hoursNeed = document.getElementById("hours").value;
+            var payment = $('#payment option:selected').text();//document.getElementById("payment").value;
+            @*'@Session["Fname"] = "' +s  + '"; ';*@
+            var newInfo =
+                {
+
+                fname: fname,
+                lname: lname,
+                email: email,
+                address: address,
+                city: city,
+                state: state,
+                zip: zip,
+                phone: phone,
+                date: date,
+                time: time,
+                event: event,
+                guest: guest,
+                hoursNeed: hoursNeed,
+                payment: payment
+
+                };
+            //alert(newInfo.fname +" "+ newInfo.email+""+newInfo.payment);
+        //    t.submit();
+            // document.getElementsByTagName('form')[0].submit();
+            $.ajax({
+                url: '/Home/saveData',
+                type: 'POST',
+                data: JSON.stringify(newInfo),
+                contentType: "application/json;charset=utf-8",
+                success: function ()
+                {
+                    console.log("Data saved successfully");
+                },
+                error: function () {
+                    console.log("not successfully");
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            $.fn.wizard.logging = true;
+            var wizard = $('#satellite-wizard').wizard({
+                keyboard: false,
+                contentHeight: 400,
+                contentWidth: 700,
+                backdrop: 'static'
+            });
+
+            $(".chzn-select").chosen();
+
+            $('#fqdn').on('input', function () {
+                if ($(this).val().length != 0) {
+                    $('#ip').val('').attr('disabled', 'disabled');
+                    $('#fqdn, #ip').parents('.form-group').removeClass('has-error has-success');
+                } else {
+                    $('#ip').val('').removeAttr('disabled');
+                }
+            });
+
+            var pattern = /\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b/;
+            x = 46;
+
+            $('#ip').on('input', function () {
+                if ($(this).val().length != 0) {
+                    $('#fqdn').val('').attr('disabled', 'disabled');
+                } else {
+                    $('#fqdn').val('').removeAttr('disabled');
+                }
+            }).keypress(function (e) {
+                if (e.which != 8 && e.which != 0 && e.which != x && (e.which < 48 || e.which > 57)) {
+                    console.log(e.which);
+                    return false;
+                }
+            }).keyup(function () {
+                var $this = $(this);
+                if (!pattern.test($this.val())) {
+                    //$('#validate_ip').text('Not Valid IP');
+                    console.log('Not Valid IP');
+                    $this.parents('.form-group').removeClass('has-error has-success').addClass('has-error');
+                    while ($this.val().indexOf("..") !== -1) {
+                        $this.val($this.val().replace('..', '.'));
+                    }
+                    x = 46;
+                } else {
+                    x = 0;
+                    var lastChar = $this.val().substr($this.val().length - 1);
+                    if (lastChar == '.') {
+                        $this.val($this.val().slice(0, -1));
+                    }
+                    var ip = $this.val().split('.');
+                    if (ip.length == 4) {
+                        //$('#validate_ip').text('Valid IP');
+                        console.log('Valid IP');
+                        $this.parents('.form-group').removeClass('has-error').addClass('has-success');
+                    }
+                }
+            });
+
+            wizard.on('closed', function () {
+                wizard.reset();
+            });
+
+            wizard.on("reset", function () {
+                wizard.modal.find(':input').val('').removeAttr('disabled');
+                wizard.modal.find('.form-group').removeClass('has-error').removeClass('has-succes');
+                wizard.modal.find('#fqdn').data('is-valid', 0).data('lookup', 0);
+            });
+
+            wizard.on("submit", function (wizard) {
+                var submit = {
+                    "hostname": $("#new-server-fqdn").val()
+                };
+
+                this.log('seralize()');
+                this.log(this.serialize());
+                this.log('serializeArray()');
+                this.log(this.serializeArray());
+
+                setTimeout(function () {
+                    wizard.trigger("success");
+                    wizard.hideButtons();
+                  //  wizard._submitting = false;
+                   wizard.showSubmitCard("success");
+                    wizard.updateProgressBar(0);
+                }, 2000);
+            });
+
+            wizard.el.find(".wizard-success .im-done").click(function () {
+                wizard.hide();
+                setTimeout(function () {
+                    wizard.reset();
+                }, 250);
+
+            });
+
+            wizard.el.find(".wizard-success .create-another-server").click(function () {
+                wizard.reset();
+            });
+
+            $(".wizard-group-list").click(function () {
+                alert("Disabled for demo.");
+            });
+
+            $('#open-wizard').click(function (e) {
+                e.preventDefault();
+                wizard.show();
+            });
+        });
+
+        function validateServerLabel(el) {
+            var name = el.val();
+            var retValue = {};
+
+            if (name == "") {
+                retValue.status = false;
+                retValue.msg = "Please enter a label";
+            } else {
+                retValue.status = true;
+            }
+
+            return retValue;
+        };
+
+        function validateFQDN(el) {
+            var $this = $(el);
+            var retValue = {};
+
+            if ($this.is(':disabled')) {
+                // FQDN Disabled
+                retValue.status = true;
+            } else {
+                if ($this.data('lookup') === 0) {
+                    retValue.status = false;
+                    retValue.msg = "Preform lookup first";
+                } else {
+                    if ($this.data('is-valid') === 0) {
+                        retValue.status = false;
+                        retValue.msg = "Lookup Failed";
+                    } else {
+                        retValue.status = true;
+                    }
+                }
+            }
+
+            return retValue;
+        };
+
+        function lookup() {
+            // Normally a ajax call to the server to preform a lookup
+            $('#fqdn').data('lookup', 1);
+            $('#fqdn').data('is-valid', 1);
+            $('#ip').val('127.0.0.1');
+
+        };
+    </script>
+
+    <script src="https://code.jquery.com/ui/1.9.2/jquery-ui.min.js">
+
+    </script>
+    <script>
+        
+
+        var availableDates = ['@Model[0].date', '@Model[1].date']; @*'@Model[2].date', '@Model[3].date'];*@
+ 
+  
+        $(function () {
+            $('#txtDate').datepicker(
+                {
+            beforeShowDay:
+                  function (dt) {
+                      return [available(dt), ""];
+        }
+           , changeMonth: true, changeYear: false
+                , onSelect: function (date)
+                {
+                   // alert("moiz" + date);
+                    var m = 0, id = 0, temp, temp2;
+                    temp2 = date.toString().split('/');
+                    
+                    for (; m < availableDates.length;m++)
+                    {
+                        temp = availableDates[m].split('-');
+                        
+                 //       alert(temp2[0].toString());
+                  //      alert(temp2[1].toString());
+                  //      alert(temp2[2].toString());
+
+                        //alert(temp[1].toString());
+                        //alert(temp[0].toString());
+                        //alert(temp[2].toString());
+                        var mo ;
+                        if ( temp2[0].toString() == temp[1].toString() &&
+                            temp2[1].toString() == temp[0].toString() &&
+                            temp2[2].toString() == temp[2].toString())
+                        {
+                            mo = temp2[1].toString() + "-" + temp2[0].toString() + "-" + temp2[2].toString();
+                            //alert(mo);
+                            $.getJSON("/Home/Butt?dateID="+mo, function (data)
+                            {
+                                if(data)
+                                {
+                                    var index = 0;
+                                    for ( ;index<data.length; index++)
+                                    {
+                                       // alert(data[index].time);
+                                        $("#timeId").append('<option>' + data[index].time + '</option>');
+                                    }
+                                }
+                                else
+                                {
+                                    alert("no data found");
+                                }
+                              
+                            });
+                        }
+                      
+                    }
+                   }
+        });
+        });
+
+
+
+        function available(date) {
+            dmy = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
+            if ($.inArray(dmy, availableDates) != -1) {
+                return true;
+        } else {
+                return false;
+        }
+        }
+
+
+    </script>
+</body>
+
+</html>
